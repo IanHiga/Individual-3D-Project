@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 
 public class CitizenScript : MonoBehaviour
 {
-    [SerializeField] private float maxMoveSpeed;
     private Transform[] locations;
     private int headTo;
     private float prevBounce;
@@ -43,7 +42,7 @@ public class CitizenScript : MonoBehaviour
         if (headTo != -1)
         {
             // SPIN
-            transform.Rotate(0, 0, 5.0f);
+            transform.Rotate(0, 0, -5.0f);
             // Debug.Log(x);
             transform.position = new Vector3(x, transform.position.y, transform.position.z);
             switch (platDiff)
