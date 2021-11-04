@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text pointDisplay;
     [SerializeField] private string prefix;
     [SerializeField] private RawImage[] errorImages;
+    [SerializeField] private GameObject deathScreenObjects;
     private int lives = 3;
     private int points;
     
@@ -34,6 +35,12 @@ public class GameManager : MonoBehaviour
         {
             delay += 0.01f;
             Destroy(citizen, delay);
+        }
+
+        if (lives == 0)
+        {
+            Time.timeScale = 0;
+            deathScreenObjects.SetActive(true);
         }
     }
 

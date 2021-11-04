@@ -12,9 +12,11 @@ public class CitizenSpawnerScript : MonoBehaviour
     private int timer;
     private int rate;
     private int milestone;
+    private int wait;
 
     private void Start()
     {
+        wait = 0;
         milestone = 1;
         gameMgr = GameObject.Find("GameManager").GetComponent<GameManager>();
         rate = minSpawnRate;
@@ -26,7 +28,7 @@ public class CitizenSpawnerScript : MonoBehaviour
         if (timer == 0)
         {
             var rand = Random.Range(0, 2);
-            if (rand == 1)
+            if (rand == 1 || wait == 1)
             {
                 // Debug.Log("Spawn new Citizen");
                 Instantiate(citizenPrefab, new Vector3(transform.position.x - 5, transform.position.y, transform.position.z), Quaternion.identity);
@@ -34,6 +36,12 @@ public class CitizenSpawnerScript : MonoBehaviour
                 {
                     rate -= 3;
                 }
+
+                wait = 0;
+            }
+            else
+            {
+                wait++;
             }
             timer = rate;
         }
